@@ -1,6 +1,6 @@
 var app = angular.module('chatroom');
 
-app.service('parseService', function($http, $q) {
+app.service('parseService', function($http) {
   //Here you'll need to create two methods. One called postData and the other called getData.
   
   //On the lines below create a getData method. This method will retrieve data from the parse backend.
@@ -13,6 +13,7 @@ app.service('parseService', function($http, $q) {
       method: 'GET',
       url: 'https://api.parse.com/1/classes/chat?order=-createdAt'
       }).then(function(res) {
+        console.log(res);
         return res.data.results;
       });
   };
@@ -33,8 +34,6 @@ app.service('parseService', function($http, $q) {
     url: 'https://api.parse.com/1/classes/chat',
     parms: {sort: 'ascending'},
     data: {text: message}
-    }).then(function(data) {
-      deferred.resolve(data.data.results);
     });
   };
 });

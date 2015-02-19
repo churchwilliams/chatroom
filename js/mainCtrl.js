@@ -10,6 +10,7 @@ app.controller('mainCtrl', function($scope, parseService){
     parseService.getData()
       .then(function(results) {
         $scope.messages = results;
+        console.log(results);
     });
   };
 
@@ -22,14 +23,9 @@ app.controller('mainCtrl', function($scope, parseService){
 
   $scope.PostData = function() {
     parseService.postData($scope.message);
-      $scope.messages = '';
+      $scope.message = '';
   };
 
-
-
-
-  //uncomment this code when your getParseData function is finished
-  //This goes and gets new data every second, which mimicking a chat room experience.
 setInterval(function(){
   $scope.getParseData();
 }, 1500);
